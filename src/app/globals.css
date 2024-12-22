@@ -76,3 +76,75 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.button {
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 16px 24px; /* Matches your `px-6 py-4` */
+  border: 1px solid #F7F7F7;
+  color: white; /* Text color */
+  background-color: transparent;
+  overflow: hidden; /* For hover overlay */
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%; 
+  width: 100%;
+  height: 100%;
+  background: rgba(116, 115, 115, 0.3); 
+  z-index: -1;
+  /* transform: skewX(-20deg);  */
+  transition: left 0.3s ease-in-out;
+}
+
+.button:hover {
+  color: #FFF; 
+}
+
+.button:hover::before {
+  left: 0;  
+}
+
+
+
+.buttonTwo {
+  position: relative;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 16px 24px; 
+ 
+  background-color: transparent;
+  overflow: hidden;  
+  z-index: 1;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.buttonTwo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%; 
+  width: 100%;
+  height: 100%;
+  background: rgba(212, 212, 212, 0.3); 
+  z-index: -1;
+  /* transform: skewX(-20deg);  */
+  transition: left 0.3s ease-in-out;
+}
+
+.buttonTwo:hover {
+  color: #FFF; 
+}
+
+.buttonTwo:hover::before {
+  left: 0;  
+}

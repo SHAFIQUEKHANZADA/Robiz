@@ -13,9 +13,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store/store";
 import { removeFromCart, updateCartQuantity } from "../store/cartSlice";
-import { PiShoppingCart } from "react-icons/pi";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["500"] });
 
@@ -36,20 +36,19 @@ const CartPopup = () => {
     0
   );
 
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalItems = cartItems.length
+    ? cartItems.reduce((total, item) => total + item.quantity, 0)
+    : 0;
 
   return (
     <div className={`${poppins.className}`}>
-      {/* Shopping Cart Icon */}
       <Sheet>
         <SheetTrigger asChild>
-          <button className="relative flex items-center text-2xl">
-            <PiShoppingCart />
-            {totalItems > 0 && (
-              <span className="absolute top-[-6px] right-[-6px] bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
+          <button className="relative flex items-center text-2xl group">
+            <HiOutlineShoppingBag className="group-hover:text-black" />
+            <span className="absolute bottom-[-8px] left-[-11px] bg-[#F7F7F7]  group-hover:bg-black  group-hover:text-[#F7F7F7] text-black text-[10px] font-bold rounded-full w-[18px] h-[18px] flex items-center justify-center">
+              {totalItems}
+            </span>
           </button>
         </SheetTrigger>
         <SheetContent side="right" className="sm:w-[417px] w-[80vw]  bg-[#F7F7F7]">
@@ -103,7 +102,7 @@ const CartPopup = () => {
                     </div>
                   </div>
                   <button
-                    className="text-white text-[20px] flex justify-center items-center rounded-full w-4 h-4 p-[11px] bg-[#9F9F9F]"
+                    className="text-white text-[20px] flex justify-center items-center rounded-full w-4 h-4 p-[11px] bg-[#9F9F9F] group-hover:bg-black"
                     onClick={() => handleRemove(item.id)}
                   >
                     &times;

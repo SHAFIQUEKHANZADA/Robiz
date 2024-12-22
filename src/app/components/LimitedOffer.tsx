@@ -1,5 +1,8 @@
 "use client";
+import { Montserrat } from "next/font/google";
 import { useState, useEffect } from "react";
+
+const montserrat = Montserrat({ subsets: ['latin'], weight: ["400"] })
 
 const LimitedOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,11 +11,11 @@ const LimitedOfferPopup = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setIsOpen(true);
-    }, 2000); // Open popup after 2 seconds
+    }, 2000);  
 
     const timer2 = setTimeout(() => {
       setIsOpen(false);
-    }, 30000); // Close popup after 30 seconds
+    }, 30000);  
 
     return () => {
       clearTimeout(timer1);
@@ -24,24 +27,24 @@ const LimitedOfferPopup = () => {
     setShowAlert(true);
     setTimeout(() => {
       setShowAlert(false);
-    }, 3000); // Hide alert after 3 seconds
+    }, 3000);  
   };
 
   return (
-    <div>
+    <div className={`${montserrat.className}`}>
       <div
         className={`fixed top-0 left-0 w-full  h-full bg-black bg-opacity-60 flex justify-center items-center ${
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="bg-white py-5 border border-gray-200 rounded-lg shadow-lg w-96 h-98 flex flex-col justify-center items-center relative px-6">
+        <div className="py-5 border border-gray-200 bg-[#F7F7F7] shadow-lg sm:w-[400px] w-[85vw] h-98 flex flex-col justify-center items-center relative px-6">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="absolute top-1 right-1 text-gray-600 hover:text-gray-800"
+            className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-8 w-8 font-light"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -81,11 +84,11 @@ const LimitedOfferPopup = () => {
           <input
             type="email"
             placeholder="Email Address"
-            className="w-[80%] p-2 border border-myBlackPara/30 bg-myWhite rounded-lg mb-2 focus:outline-none  focus:ring-myBlackPara/90"
+            className="w-[80%] bg-[#F7F7F7] p-2 py-[10px] border border-black mb-2 focus:outline-none focus:ring-myBlackPara/90"
           />
           <button
             onClick={handleSignUp}
-            className="bg-myBlackHead hover:bg-transparent text-myWhite hover:text-myBlackHead scroll-m-20 text-xs font-semibold tracking-tight w-[80%]"
+            className="bg-slate-800 buttonTwo border border-black hover:bg-transparent text-slate-800 hover:text-slate-900 scroll-m-20 text-xs font-semibold tracking-tight w-[80%]"
           >
             SIGN UP
           </button>

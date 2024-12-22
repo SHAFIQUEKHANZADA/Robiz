@@ -15,9 +15,7 @@ export function Search() {
             {SHEET_SIDES.map((side) => (
                 <Sheet key={side}>
                     <SheetTrigger asChild>
-                        <button>
-                            <FiSearch className="h-6 w-6 cursor-pointer" />
-                        </button>
+                            <FiSearch className="text-2xl cursor-pointer" />
                     </SheetTrigger>
                     <SheetContent side={side} className="bg-[#f7f7f7]">
                         <div className="">

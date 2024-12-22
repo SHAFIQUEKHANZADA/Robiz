@@ -11,7 +11,7 @@ const SHEET_SIDES = ["top"] as const
 
 export default function SearchInput() {
     return (
-        <div>
+        <div className="md:hidden block">
             {SHEET_SIDES.map((side) => (
                 <Sheet key={side}>
                     <SheetTrigger asChild>

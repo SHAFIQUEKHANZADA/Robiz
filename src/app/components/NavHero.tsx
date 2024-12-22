@@ -5,12 +5,13 @@ import MobileMenuBar from './Navlink'
 import CartPopup from './CartPopup'
 import CustomDropdown from './Dropdown'
 import { Search } from './Search'
+import { FiUser } from 'react-icons/fi'
 
 const inter = Inter({ subsets: ['latin'] })
 // const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
 const dropdownData = [
     {
-        label: "Category",
+        label: "SHOP",
         items: [
             { href: "/technology-and-innovation", text: "Technology and Innovation" },
             { href: "/sports", text: "Sports" },
@@ -21,7 +22,7 @@ const dropdownData = [
         ],
     },
     {
-        label: "Services",
+        label: "CORE COLLECTION",
         items: [
             { href: "/web-development", text: "Web Development" },
             { href: "/mobile-apps", text: "Mobile Apps" },
@@ -31,44 +32,51 @@ const dropdownData = [
         ],
     },
     {
-        label: "Resources",
+        label: "ABOUT ROBIZ",
         items: [
-            { href: "/blogs", text: "Blogs" },
-            { href: "/tutorials", text: "Tutorials" },
-            { href: "/case-studies", text: "Case Studies" },
-            { href: "/whitepapers", text: "Whitepapers" },
-            { href: "/community", text: "Community" },
+            { href: "/tutorials", text: "PRESS" },
+            { href: "/case-studies", text: "LOOKBOOK" },
+            { href: "/whitepapers", text: "ABOUT US" },
+            { href: "/community", text: "CONTACT US" },
         ],
     },
 ];
 
 const NavHero = () => {
     return (
-        <div className='md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-transparent hover:bg-[#F7F7F7] hover:text-[#000000] text-white'>
-            <div className='flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4'>
+        <div className="md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-transparent group hover:bg-[#F7F7F7] duration-150 text-white">
+            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4 group-hover:text-black">
                 <MobileMenuBar />
-                <Search/>
-              
-                <div className='flex flex-col justify-center items-center gap-4'>
-                    <h1 className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold`}>Robiz</h1>
-                    <div className="md:flex hidden items-center gap-6">
+                <Search />
+
+                <div className="flex flex-col justify-center items-center gap-4 ml-5">
+                    <h1
+                        className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold group-hover:text-black`}
+                    >
+                        Robiz
+                    </h1>
+                    <div className="md:flex hidden items-center gap-5">
                         {dropdownData.map((dropdown, index) => (
-                            <CustomDropdown key={index} label={dropdown.label} items={dropdown.items} />
+                            <CustomDropdown
+                                key={index}
+                                label={dropdown.label}
+                                items={dropdown.items}
+                            />
                         ))}
                     </div>
                 </div>
-                <div className='flex items-center gap-6'>
 
-                    <div className='flex items-center sm:gap-4 gap-3'>
+                <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4">
                         <SearchInput />
-                        {/* <FaRegHeart className='sm:w-6 sm:h-6 w-5 h-5' /> */}
                         <CartPopup />
+                        <FiUser className="text-2xl group-hover:text-black" />
                     </div>
                 </div>
             </div>
-            <div className=" h-[1px]   md:mt-2  border-b-2 border-white w-[95%] mx-auto" /> 
+            <div className="md:mt-2 border-b border-white group-hover:border-black w-[95%] mx-auto" />
         </div>
-    )
-}
+    );
+};
 
-export default NavHero
+export default NavHero;
