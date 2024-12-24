@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import sanityClient from '../../../../lib/sanityClient';
+import { client } from "../../../../sanity/lib/client";
 import { groq } from 'next-sanity';
 
 
@@ -15,34 +15,29 @@ interface Product {
   slug: string;
 }
 
-// GROQ query for top trending products
-const query = groq`
-  *[_type == "product" && specialTag == "topTrending"]{
-    title,
-    price,
-    salePrice,
-    mainImage,
-    slug
-  }
-`;
-
- 
-
 export async function GET() {
   try {
-    const products: Product[] = await sanityClient.fetch(query);
-    console.log(products);
-    products.forEach((product) => {
-      if (product.mainImage) {
-        console.log('Image URL:', product.mainImage.asset._ref);  
-      } else {
-        console.log('No image found for product:', product.title);
+    const query = groq`
+      *[_type == "product" && specialTag == "topTrending"]{
+        title,
+        price,
+        salePrice,
+        mainImage,
+        slug
       }
-    });
+    `;
+    const products: Product[] = await client.fetch(query);
 
-    return NextResponse.json({ products });
+    return NextResponse.json(
+      { products },
+      {
+        headers: {
+          'Cache-Control': 'no-store', 
+        },
+      }
+    );
   } catch (error) {
-    console.log(error)
+    console.error(error);
     return NextResponse.json(
       { error: "Failed to fetch Men category products." },
       { status: 500 }
