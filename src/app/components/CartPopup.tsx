@@ -7,17 +7,17 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
 } from "@/components/ui/sheet";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store/store";
 import { removeFromCart, updateCartQuantity } from "../store/cartSlice";
 import Image from "next/image";
-import { Poppins } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import Link from "next/link";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["500"] });
+const archivo = Archivo({ subsets: ['latin'], weight: ["400"] })
 
 const CartPopup = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -41,7 +41,7 @@ const CartPopup = () => {
     : 0;
 
   return (
-    <div className={`${poppins.className}`}>
+    <div className={`${archivo.className}`}>
       <Sheet>
         <SheetTrigger asChild>
           <button className="relative flex items-center text-2xl group">
@@ -53,17 +53,17 @@ const CartPopup = () => {
         </SheetTrigger>
         <SheetContent side="right" className="sm:w-[417px] w-[80vw]  bg-[#F7F7F7]">
           <SheetHeader>
-            <SheetTitle>Shopping Cart</SheetTitle>
-            <SheetDescription>
-              Manage the items in your cart and proceed to checkout.
-            </SheetDescription>
+            <SheetTitle className="font-light text-[18px] text-left">YOUR CART</SheetTitle>
+            <div className="w-full h-[1.5px] bg-black mt-10"></div>
           </SheetHeader>
 
           {/* Cart Items */}
           <div className="py-4 overflow-y-auto scrollbar-custom">
             {cartItems.length === 0 ? (
-              <div className="flex justify-center items-center h-full">
-                <p className="text-center text-gray-500">Your cart is empty.</p>
+              <div className="flex flex-col gap-2 justify-center items-center h-[80vh]">
+                <h1 className="text-center text-black text-[20px] font-medium">YOUR CART IS EMPTY</h1>
+                <p className="text-[15px]">Browse below to begin shopping</p>
+                <Link href={"/"}><button className="mt-5 bg-[#111111] text-white px-10 py-4 text-[13px] buttonThree">CORE COLLECTION</button></Link>
               </div>
             ) : (
               cartItems.map((item) => (
@@ -112,28 +112,32 @@ const CartPopup = () => {
             )}
           </div>
 
-          {/* Subtotal */}
-          <div className="pt-4">
-            <div className="flex items-center justify-between">
-              <h4 className="text-[16px]">Subtotal:</h4>
-              <h4 className="font-semibold text-[16px] text-[#B88E2F]">
-                ${subtotal.toFixed(2)}
-              </h4>
-            </div>
-          </div>
+          {/* Subtotal and Actions */}
+          {cartItems.length > 0 && (
+            <div>
+              <div className="pt-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-[16px]">Subtotal:</h4>
+                  <h4 className="font-semibold text-[16px] text-[#B88E2F]">
+                    ${subtotal.toFixed(2)}
+                  </h4>
+                </div>
+              </div>
 
-          {/* Actions */}
-          <div className="flex sm:justify-between justify-center gap-3 mt-3 border-t py-6">
-            <Button variant="outline" className="sm:text-[12px] text-[10px]">
-              Cart
-            </Button>
-            <Button variant="outline" className="sm:text-[12px] text-[10px]">
-              Checkout
-            </Button>
-            <Button variant="outline" className="sm:text-[12px] text-[10px]">
-              Comparison
-            </Button>
-          </div>
+              {/* Actions */}
+              <div className="flex sm:justify-between justify-center gap-3 mt-3 border-t py-6">
+                <Button variant="outline" className="sm:text-[12px] text-[10px]">
+                  Cart
+                </Button>
+                <Button variant="outline" className="sm:text-[12px] text-[10px]">
+                  Checkout
+                </Button>
+                <Button variant="outline" className="sm:text-[12px] text-[10px]">
+                  Comparison
+                </Button>
+              </div>
+            </div>
+          )}
         </SheetContent>
       </Sheet>
     </div>
@@ -141,3 +145,4 @@ const CartPopup = () => {
 };
 
 export default CartPopup;
+
