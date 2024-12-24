@@ -1,5 +1,3 @@
-// components/AddToCartButton.tsx
-
 import React from "react";
 
 interface AddToCartButtonProps {
