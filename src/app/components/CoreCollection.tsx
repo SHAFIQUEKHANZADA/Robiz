@@ -9,6 +9,10 @@ import "swiper/css/navigation";
 import { useRouter } from "next/navigation";
 import { Archivo } from "next/font/google";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -31,7 +35,7 @@ const CoreCollection = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSeeAll, setShowSeeAll] = useState<boolean>(false);
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null); // Set type here
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null); 
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const router = useRouter();
 
@@ -52,9 +56,17 @@ const CoreCollection = () => {
     fetchProducts();
   }, [category]);
 
+  
+useEffect(() => {
+  AOS.init({ 
+    once: true,  
+    offset: 20,
+  });
+}, []);
+
   return (
     <div className={`${archivo.className} sm:py-5`}>
-      <div className="md:px-10 px-4 text-center sm:text-left flex flex-col justify-center items-center sm:items-stretch my-5">
+      <div data-aos="fade-up" data-aos-duration="600" className="md:px-10 px-4 text-center sm:text-left flex flex-col justify-center items-center sm:items-stretch my-5">
         <h2 className="sm:text-[30px] text-[20px] font-medium mb-2 text-[#111111]">
           CORE COLLECTION
         </h2>
@@ -133,7 +145,7 @@ const CoreCollection = () => {
 
       {/* Swiper Product Grid */}
       {!loading && products.length > 0 && (
-        <div className="sm:pl-5">
+        <div data-aos="fade-up"  data-aos-duration="600" className="sm:pl-5">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
@@ -141,7 +153,7 @@ const CoreCollection = () => {
             onSwiper={(swiper) => setSwiperInstance(swiper)}
             onSlideChange={(swiper) => {
               setActiveIndex(swiper.activeIndex);
-              if (swiper.activeIndex >= 6) {
+              if (swiper.activeIndex >= 4) {
                 setShowSeeAll(true);
               } else {
                 setShowSeeAll(false);
@@ -163,7 +175,7 @@ const CoreCollection = () => {
 
           {/* "See All" Button */}
           {showSeeAll && (
-            <div className="text-center mt-4">
+            <div className="text-center">
               <button
                 className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                 onClick={() => router.push(`/${category}`)}
