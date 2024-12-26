@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./components/Header";
-// import Nav from "./components/Nav";
-import Footer from "./components/Footer";
 import ReduxProvider from "./components/ReduxProvider";
 import WhatsAppButton from "./components/WhatsAppButton";
 
@@ -34,12 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F7F7F7]`}
       >
-         <ReduxProvider>
-          <Header />
+        <ReduxProvider>
           {children}
-          <Footer />
         </ReduxProvider>
-          <WhatsAppButton />
+        <WhatsAppButton />
       </body>
     </html>
   );

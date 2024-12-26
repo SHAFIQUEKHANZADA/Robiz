@@ -21,7 +21,14 @@ export async function GET() {
         title,
         price,
         salePrice,
-        mainImage,
+         sideImages[]{
+           asset->{
+            _id,
+             url
+           },
+          alt
+         },
+        productdetails,
         slug
       }
     `;
@@ -31,7 +38,7 @@ export async function GET() {
       { products },
       {
         headers: {
-          'Cache-Control': 'no-store', 
+          'Cache-Control': 'no-store',
         },
       }
     );

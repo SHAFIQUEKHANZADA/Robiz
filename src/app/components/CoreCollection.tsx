@@ -20,15 +20,17 @@ interface Product {
   title: string;
   price: number;
   salePrice: number;
-  mainImage: {
+  sideImages: {
     asset: {
       _ref: string;
     };
-  };
+    alt: string;
+  }[];
   slug: {
     current: string;
   };
 }
+
 
 const CoreCollection = () => {
   const [category, setCategory] = useState<string>("men");
@@ -164,10 +166,12 @@ useEffect(() => {
             {products.map((product) => (
               <SwiperSlide key={product.slug.current}>
                 <CustomCard
-                  imageUrl={product.mainImage}
+                 imageUrl={product.sideImages[0]}
                   title={product.title}
                   price={product.price}
                   salePrice={product.salePrice}
+                  category={category}
+                  slug={product.slug.current}
                 />
               </SwiperSlide>
             ))}

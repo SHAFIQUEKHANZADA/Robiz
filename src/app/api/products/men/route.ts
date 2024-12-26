@@ -21,7 +21,14 @@ export async function GET() {
         title,
         price,
         salePrice,
-        mainImage,
+         sideImages[]{
+           asset->{
+            _id,
+             url
+           },
+          alt
+         },
+        productdetails,
         slug
       }
     `;

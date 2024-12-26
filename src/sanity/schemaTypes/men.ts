@@ -48,15 +48,15 @@ export const men = defineType({
         },
       ],
     }),
-    defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
-    }),
+    // defineField({
+    //   name: 'mainImage',
+    //   title: 'Main Image',
+    //   type: 'image',
+    //   options: {
+    //     hotspot: true,
+    //   },
+    //   validation: (Rule) => Rule.required(),
+    // }),
     defineField({
       name: 'sideImages',
       title: 'Side Images',

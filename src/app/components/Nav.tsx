@@ -1,17 +1,17 @@
 import { Inter } from 'next/font/google'
 // import { Poppins } from 'next/font/google'
-import { FaRegHeart } from 'react-icons/fa'
-import { FiSearch } from 'react-icons/fi'
 import SearchInput from './SearchInput'
 import MobileMenuBar from './Navlink'
 import CartPopup from './CartPopup'
 import CustomDropdown from './Dropdown'
+import { Search } from './Search'
+import { FiUser } from 'react-icons/fi'
 
 const inter = Inter({ subsets: ['latin'] })
 // const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
 const dropdownData = [
     {
-        label: "Category",
+        label: "SHOP",
         items: [
             { href: "/technology-and-innovation", text: "Technology and Innovation" },
             { href: "/sports", text: "Sports" },
@@ -22,7 +22,7 @@ const dropdownData = [
         ],
     },
     {
-        label: "Services",
+        label: "CORE COLLECTION",
         items: [
             { href: "/web-development", text: "Web Development" },
             { href: "/mobile-apps", text: "Mobile Apps" },
@@ -32,53 +32,51 @@ const dropdownData = [
         ],
     },
     {
-        label: "Resources",
+        label: "ABOUT ROBIZ",
         items: [
-            { href: "/blogs", text: "Blogs" },
-            { href: "/tutorials", text: "Tutorials" },
-            { href: "/case-studies", text: "Case Studies" },
-            { href: "/whitepapers", text: "Whitepapers" },
-            { href: "/community", text: "Community" },
+            { href: "/tutorials", text: "PRESS" },
+            { href: "/case-studies", text: "LOOKBOOK" },
+            { href: "/whitepapers", text: "ABOUT US" },
+            { href: "/community", text: "CONTACT US" },
         ],
     },
 ];
 
 const Nav = () => {
     return (
-        <div className='h-[70px] justify-end flex flex-col gap-3 bg-transparent'>
-            <div className='text-[#000000] flex items-center md:h-[38px] h-full justify-between w-[90%] mx-auto'>
+        <div className="md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-[#F7F7F7] duration-150 ">
+            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4  text-black">
                 <MobileMenuBar />
-                <div className="relative md:block hidden">
-                    <input
-                        type="email"
-                        placeholder="What are you looking for?"
-                        className="bg-[#F5F5F5] rounded py-3 pr-10 pl-4 h-[38px] w-full"
-                    />
-                    <FiSearch
-                        className="h-6 w-6 absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
-                    />
-                </div>
-                <div className='flex flex-col justify-center items-center gap-4'>
-                    <h1 className={`${inter.className} text-[24px] md:pl-0 pl-[52px] font-bold`}>Robiz</h1>
-                    <div className="flex items-center gap-6">
+                <Search />
+
+                <div className="flex flex-col justify-center items-center gap-4 ml-5">
+                    <h1
+                        className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold text-black`}
+                    >
+                        Robiz
+                    </h1>
+                    <div className="md:flex hidden items-center gap-5">
                         {dropdownData.map((dropdown, index) => (
-                            <CustomDropdown key={index} label={dropdown.label} items={dropdown.items} />
+                            <CustomDropdown
+                                key={index}
+                                label={dropdown.label}
+                                items={dropdown.items}
+                            />
                         ))}
                     </div>
                 </div>
-                <div className='flex items-center gap-6'>
 
-                    <div className='flex items-center sm:gap-4 gap-3'>
+                <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4">
                         <SearchInput />
-                        <FaRegHeart className='sm:w-6 sm:h-6 w-5 h-5' />
-                        {/* <RiShoppingCart2Line className='sm:w-6 sm:h-6 w-5 h-5' /> */}
                         <CartPopup />
+                        <FiUser className="text-2xl text-black" />
                     </div>
                 </div>
             </div>
-            <div className="bg-[#000000] opacity-[30%] h-[1px] w-full md:block hidden" />
+            <div className="md:mt-2 border-b border-black w-[95%] mx-auto" />
         </div>
-    )
-}
+    );
+};
 
-export default Nav
+export default Nav;
