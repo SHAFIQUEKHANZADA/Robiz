@@ -1,15 +1,19 @@
-import { Inter } from 'next/font/google'
-import { Poppins } from 'next/font/google'
+import { Inter, Lato } from 'next/font/google'
 import Image from 'next/image'
-import { FaApple } from 'react-icons/fa'
 import { GrInstagram } from 'react-icons/gr'
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const inter = Inter({ subsets: ['latin'] })
-const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
+const lato = Lato({ subsets: ['latin'], weight: ["400"] })
 const Footer = () => {
     return (
-        <div className='md:h-[440px] bg-[#000000] flex flex-col md:items-center justify-end gap-[80px] py-2 md:pt-0 pt-10 md:px-0 px-3'>
-            <div className={`${poppins.className} flex flex-col md:flex-row gap-10 lg:gap-[87px] text-[#FAFAFA]`}>
+        <div className={`${lato.className} md:h-[440px] uppercase bg-[#000000] flex flex-col md:items-center justify-end md:gap-[80px] gap-16 py-2 md:pt-0 pt-10 md:px-0 px-3`}>
+            <div className={`flex flex-col md:flex-row gap-8 lg:gap-[87px] text-[#FAFAFA]`}>
                 <div className='w-[217px] sm:h-[188px] gap-2 flex flex-col justify-between'>
                     <h1 className={`${inter.className} text-[24px] font-bold`}>Robiz</h1>
                     <p className={`text-[20px]`}>Subscribe</p>
@@ -31,13 +35,13 @@ const Footer = () => {
 
 
                 </div>
-                <div className={`sm:h-[180px] gap-2 w-[175px] flex flex-col justify-between`}>
+                <div className={`sm:h-[180px] gap-2 w-[185px] md:flex hidden flex-col justify-between`}>
                     <h1 className="font-medium text-[20px] mb-1">Support</h1>
                     <p className='text-[16px] font-normal'>111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
-                    <p className='text-[16px] font-normal'>exclusive@gmail.com</p>
+                    <p className='text-[16px] font-normal'>robiz@gmail.com</p>
                     <p className='text-[16px] font-normal'>+88015-88888-9999</p>
                 </div>
-                <div className={`w-[123px] sm:h-[236px] gap-2 flex flex-col justify-between`}>
+                <div className={`w-[123px] sm:h-[236px] gap-2 md:flex hidden flex-col justify-between`}>
                     <h1 className='font-medium text-[20px] mb-1'>Account</h1>
                     <p className='font-normal text-[16px]'>My Account</p>
                     <p className='font-normal text-[16px]'>Login / Register</p>
@@ -45,57 +49,75 @@ const Footer = () => {
                     <p className='font-normal text-[16px]'>Wishlist</p>
                     <p className='font-normal text-[16px]'>Shop</p>
                 </div>
-                <div className='sm:h-[196px] gap-2 w-[109px] flex flex-col justify-between'>
+                <div className='sm:h-[196px] gap-2 w-[129px] md:flex hidden flex-col justify-between'>
                     <h1 className='font-medium text-[20px] mb-1'>Quick Link</h1>
                     <p className='font-normal text-[16px]'>Privacy Policy</p>
                     <p className='font-normal text-[16px]'>Terms Of Use</p>
                     <p className='font-normal text-[16px]'>FAQ</p>
                     <p className='font-normal text-[16px]'>Contact</p>
                 </div>
-                <div className='sm:h-[210px] gap-4 w-[198px] flex flex-col justify-between'>
-                    <h1 className='text-[20px] font-medium'>Download App</h1>
-                    <div className='flex flex-col gap-2'>
-                        <p className='text-[12px] opacity-[70%]'>Save $3 with App New User Only</p>
-                        <div className='flex gap-2'>
-                            <div>
-                                <Image src={"/images/code.png"} alt='QR code' width={100} height={100} className='h-[76px] w-[76px]' />
-                            </div>
-                            <div className="flex flex-col justify-between">
-                                <div className="flex gap-1 bg-[#000000] items-center justify-center border-[0.6px] rounded h-[32px] w-[110px]">
-                                    <div className="flex items-center">
-                                        <Image src={"/images/play.png"} alt="playstore" width={24} height={24} />
-                                    </div>
-                                    <div>
-                                        <h1 className="text-white/80 text-[8px] font-light">GET IT ON</h1>
-                                        <p className="text-white/80 text-[10px] font-semibold">GOOGLE PLAY</p>
-                                    </div>
-                                </div>
+                <div className='md:hidden block'>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger className="text-[18px]">Support</AccordionTrigger>
+                            <AccordionContent className="text-[16px] space-y-3">
+                                <p className='text-[16px] font-normal'>111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
+                                <p className='text-[16px] font-normal'>exclusive@gmail.com</p>
+                                <p className='text-[16px] font-normal'>+88015-88888-9999</p>
+                            </AccordionContent>
+                        </AccordionItem>
 
-                                <div className="flex gap-1 bg-[#000000] items-center justify-center border-[0.6px] rounded h-[32px] w-[110px]">
-                                    <div className="flex items-center">
-                                        <FaApple className="text-white text-[24px]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-white text-[8px] font-light">Download on the</p>
-                                        <h1 className="text-white text-[10px] font-semibold leading-none">App Store</h1>
-                                    </div>
-                                </div>
-                            </div>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger className="text-[18px]">Account</AccordionTrigger>
+                            <AccordionContent className="text-[16px] space-y-3">
+                                <p className='font-normal text-[16px]'>My Account</p>
+                                <p className='font-normal text-[16px]'>Login / Register</p>
+                                <p className='font-normal text-[16px]'>Cart</p>
+                                <p className='font-normal text-[16px]'>Wishlist</p>
+                                <p className='font-normal text-[16px]'>Shop</p>
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger className="text-[18px]">Quick Link</AccordionTrigger>
+                            <AccordionContent className="text-[16px] space-y-3">
+                                <p className='font-normal text-[16px]'>Privacy Policy</p>
+                                <p className='font-normal text-[16px]'>Terms Of Use</p>
+                                <p className='font-normal text-[16px]'>FAQ</p>
+                                <p className='font-normal text-[16px]'>Contact</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
+                <div className='space-y-10'>
+                    <div className='space-y-2'>
+                        <h1 className='text-[20px] font-medium'>Easy and Secure Payments</h1>
+                        <div className='flex items-center gap-3'>
+                            <Image src={"/svg/apple-pay.svg"} alt='apple-pay' width={30} height={30} />
+                            <Image src={"/svg/google-pay.svg"} alt='google-pay' width={30} height={30} />
+                            <Image src={"/svg/discover.svg"} alt='discover-pay' width={30} height={30} />
+                            <Image src={"/svg/paypal.svg"} alt='paypal-pay' width={31} height={30} className='bg-white px-2 py-[3px] rounded-[2px]' />
+                            <Image src={"/svg/payoneer.svg"} alt='payoneer' width={30} height={30} />
+                            <Image src={"/svg/amazon.svg"} alt='amazon' width={30} height={30} />
                         </div>
                     </div>
-                    <div className='flex gap-[24px] items-center'>
-                        <Image src={"/images/facebook.png"} alt='facebook' width={100} height={100} className='h-6 w-6' />
-                        <Image src={"/images/twitter.png"} alt='Twitter' width={100} height={100} className='h-6 w-6' />
-                        <GrInstagram className='h-6 w-6 text-[#D5D5D5]/90' />
-                        <Image src={"/images/linkedin.png"} alt='linkedin' width={100} height={100} className='h-6 w-6' />
+
+                    <div className='flex items-center gap-3'>
+                        <h1 className='text-[20px] font-medium'>Share:</h1>
+                        <div className='flex sm:gap-[24px] gap-5 items-center'>
+                            <Image src={"/images/facebook.png"} alt='facebook' width={100} height={100} className='h-6 w-6' />
+                            <Image src={"/images/twitter.png"} alt='Twitter' width={100} height={100} className='h-6 w-6' />
+                            <GrInstagram className='h-6 w-6 text-[#D5D5D5]/90' />
+                            <Image src={"/images/linkedin.png"} alt='linkedin' width={100} height={100} className='h-6 w-6' />
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className='w-[100%] opacity-[40%] text-[#FFFFFF] flex flex-col gap-3'>
                 <div className="bg-[#FFFFFF] opacity-[40%] h-[1px] w-full" />
-                <p className="text-center font-normal text-[16px]">
-                    © Copyright Rimel 2022. All right reserved
+                <p className="text-center font-normal sm:text-[14px] text-[12px]">
+                    © Copyright Robiz 2024. All right reserved
                 </p>
             </div>
         </div>

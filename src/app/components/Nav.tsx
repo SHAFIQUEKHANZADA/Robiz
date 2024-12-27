@@ -1,32 +1,32 @@
-import { Inter } from 'next/font/google'
-// import { Poppins } from 'next/font/google'
+import { Inter, Montserrat } from 'next/font/google'
 import SearchInput from './SearchInput'
 import MobileMenuBar from './Navlink'
 import CartPopup from './CartPopup'
 import CustomDropdown from './Dropdown'
 import { Search } from './Search'
 import { FiUser } from 'react-icons/fi'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
-// const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
+const montserrat = Montserrat({ subsets: ['latin'], weight: ["400"] })
 const dropdownData = [
     {
         label: "SHOP",
         items: [
-            { href: "/technology-and-innovation", text: "Technology and Innovation" },
-            { href: "/sports", text: "Sports" },
-            { href: "/business", text: "Business" },
+            { href: "/men", text: "MEN'S" },
+            { href: "/women", text: "WOMEN'S" },
+            { href: "/shirts", text: "T-SHIRTS & SHIRTS" },
             { href: "/health-and-fitness", text: "Health & Fitness" },
             { href: "/news-and-currentaffairs", text: "News and Current Affairs" },
-            { href: "/food-and-drink", text: "Food and Drink" },
+            { href: "/Accessories", text: "ACCESSORIES" },
         ],
     },
     {
         label: "CORE COLLECTION",
         items: [
-            { href: "/web-development", text: "Web Development" },
-            { href: "/mobile-apps", text: "Mobile Apps" },
-            { href: "/digital-marketing", text: "Digital Marketing" },
+            { href: "/products", text: "ALL PRODUCTS" },
+            { href: "/shirts", text: "SHIRTS" },
+            { href: "/dress", text: "DRESS" },
             { href: "/seo-services", text: "SEO Services" },
             { href: "/ui-ux-design", text: "UI/UX Design" },
         ],
@@ -44,17 +44,19 @@ const dropdownData = [
 
 const Nav = () => {
     return (
-        <div className="md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-[#F7F7F7] duration-150 ">
+        <div className={`${montserrat.className} md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-[#F7F7F7] duration-150`}>
             <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4  text-black">
                 <MobileMenuBar />
                 <Search />
 
                 <div className="flex flex-col justify-center items-center gap-4 ml-5">
-                    <h1
-                        className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold text-black`}
-                    >
-                        Robiz
-                    </h1>
+                    <Link href={"/"}>
+                        <h1
+                            className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold text-black`}
+                        >
+                            Robiz
+                        </h1>
+                    </Link>
                     <div className="md:flex hidden items-center gap-5">
                         {dropdownData.map((dropdown, index) => (
                             <CustomDropdown

@@ -17,6 +17,7 @@ import {
 import { Archivo } from "next/font/google";
 import ReturnPolicy from "@/app/components/ReturnPolicy";
 import ShippingPolicy from "@/app/components/ShippingPolicy";
+import ShareButton from "@/app/components/Share";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -50,7 +51,7 @@ interface Product {
   sideImages: SideImage[];
   description: string;
   slug: string;
-  productdetails: RichTextBlock[]; 
+  productdetails: RichTextBlock[];
   sizes: string[];
 }
 
@@ -108,7 +109,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
     <div className={`${archivo.className} product-page md:p-10 p-4`}>
       <div className="flex md:flex-row flex-col gap-10">
 
-        <div className="flex-1 flex gap-4">
+        <div className="md:w-[52%] flex lg:gap-4 gap-2">
           {/* Side Images */}
           <div className="md:flex hidden flex-col gap-3">
             {sideImages?.map((image, index) => {
@@ -121,7 +122,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
                   key={index}
                   src={sideImageUrl}
                   alt={image.alt || "Side image"}
-                  width={100}
+                  width={80}
                   height={100}
                   className={`cursor-pointer border ${activeImageIndex === index ? "border-black" : "border-gray-300"}`}
                   onClick={() => handleImageSelect(index)}
@@ -135,11 +136,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
             <Swiper
               modules={[Navigation]}
               navigation
-              className="lg:w-[520px] md:w-[40vw] w-[91vw] h-[500px] lg:h-[650px] md-[500px]"
+              className="xl:w-[550px] md:w-[40vw] w-[91vw] h-[500px] lg:h-[650px] md-[500px]"
               onSlideChange={(swiper) => setActiveImageIndex(swiper.activeIndex)}
               initialSlide={activeImageIndex}
               ref={swiperRef}
-              
+
             >
               {sideImages?.map((image, index) => {
                 const swiperImageUrl = image.asset._ref
@@ -153,10 +154,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
                       alt={image.alt || "Main image"}
                       width={520}
                       height={650}
-                      className="relative lg:w-[520px] md:w-[40vw] w-[91vw] h-[500px] lg:h-[650px] md-[500px] object-top object-cover"
+                      className="relative xl:w-[550px] md:w-[40vw] w-[91vw] h-[500px] lg:h-[650px] md-[500px] object-top object-cover"
                     />
 
-                    <span className=" bg-[#E70000] text-white p-4 py-2 text-[14px] rounded-3xl absolute top-4 right-4">{discountPercentage}% off</span>
+                    {salePrice && (
+                      <span className=" bg-[#E70000] text-white p-4 py-2 text-[14px] rounded-3xl absolute top-4 right-4">{discountPercentage}% off</span>
+                    )}
                   </SwiperSlide>
                 );
               })}
@@ -165,25 +168,22 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
         </div>
 
         {/* Product Details */}
-        <div className="flex-1 space-y-6">
-          <h1 className="sm:text-[36px] font-medium mb-2">{title}</h1>
+        <div className="flex-1 sm:space-y-6">
+          <h1 className="sm:text-[36px] text-[20px] font-medium mb-2">{title}</h1>
           <div className="flex items-center gap-4">
             {/* Price Display */}
-            <span className="text-lg font-medium">Rs. {salePrice || price}</span>
+            <span className="text-[20px] font-medium">Rs. {salePrice || price}</span>
             {/* Show sale price if available */}
             {salePrice && (
               <>
                 <span className="line-through text-gray-500">Rs. {price}</span>
-
               </>
             )}
-
-
           </div>
 
           {/* Size selection UI */}
           <div className="sizes mt-6">
-            <h2 className="font-semibold mb-2">Select Size:</h2>
+            <h2 className="font-semibold mb-2">Available Size:</h2>
             <div className="flex flex-wrap gap-1">
               {sizes?.map((size, index) => (
                 <div
@@ -199,12 +199,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
             </div>
           </div>
 
-
           <div className="mt-10">
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
-                <AccordionTrigger>PRODUCT DETAILS</AccordionTrigger>
-                <AccordionContent>
+                <AccordionTrigger className="text-[18px]">PRODUCT DETAILS</AccordionTrigger>
+                <AccordionContent className="text-[16px]">
                   <div className="rich-text">
                     <PortableText value={productdetails} />
                   </div>
@@ -213,21 +212,26 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
 
               {/* Shiiping */}
               <AccordionItem value="item-2">
-                <AccordionTrigger>SHIPPING</AccordionTrigger>
-                <AccordionContent>
+                <AccordionTrigger className="text-[18px]">SHIPPING</AccordionTrigger>
+                <AccordionContent className="text-[16px]">
                   <ShippingPolicy />
                 </AccordionContent>
               </AccordionItem>
 
               {/* Return */}
               <AccordionItem value="item-3">
-                <AccordionTrigger>RETURNS</AccordionTrigger>
-                <AccordionContent>
+                <AccordionTrigger className="text-[18px]">RETURNS</AccordionTrigger>
+                <AccordionContent className="text-[16px]">
                   <ReturnPolicy />
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
 
+          </div>
+
+          <div className="flex items-center gap-4 mt-5">
+            <h1 className="text-[18px] font-medium">SHARE:</h1>
+            <ShareButton />
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ interface Product {
 export async function GET() {
   try {
     const query = groq`
-      *[_type == "men" && category == "shirt"]{
+      *[_type == "men" && category == "shalwarkameez"]{
         title,
         price,
         salePrice,

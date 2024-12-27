@@ -1,4 +1,5 @@
 import CoreCollection from "./components/CoreCollection";
+import EasternWear from "./components/EasternWear";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <CoreCollection />
       <Volume/>
       <LimitedOfferPopup />
+      <EasternWear/>
       <Footer />
     </div>
   );

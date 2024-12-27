@@ -93,6 +93,7 @@ export const men = defineType({
           { title: 'Shirt', value: 'shirt' },
           { title: 'T-Shirt', value: 'tshirt' },
           { title: 'Pants', value: 'pants' },
+          { title: 'Shalwar kameez', value: 'shalwarkameez' },
         ],
       },
       validation: (Rule) => Rule.required(),

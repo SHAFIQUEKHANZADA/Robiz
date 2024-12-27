@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google'
-// import { Poppins } from 'next/font/google'
 import SearchInput from './SearchInput'
 import MobileMenuBar from './Navlink'
 import CartPopup from './CartPopup'
@@ -8,7 +7,6 @@ import { Search } from './Search'
 import { FiUser } from 'react-icons/fi'
 
 const inter = Inter({ subsets: ['latin'] })
-// const poppins = Poppins({ subsets: ['latin'], weight: ["400"] })
 const dropdownData = [
     {
         label: "SHOP",
