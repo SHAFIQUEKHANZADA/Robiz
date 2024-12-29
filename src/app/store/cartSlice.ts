@@ -30,7 +30,7 @@ const cartSlice = createSlice({
         // Ensure each new item gets a unique ID if not provided
         state.items.push({
           ...action.payload,
-          id: uuidv4(), // Generate a new random ID if the product doesn't already have one
+          id: action.payload.id || uuidv4(), // Use provided id if available, else generate a new one
         });
       }
     },
@@ -40,10 +40,9 @@ const cartSlice = createSlice({
     },
     // Updating product quantity
     updateCartQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
-      const item = state.items.find(item => item.id === action.payload.id);
-      if (item) {
-        item.quantity = action.payload.quantity;
-      }
+      state.items = state.items.map(item =>
+        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+      );
     },
   },
 });
