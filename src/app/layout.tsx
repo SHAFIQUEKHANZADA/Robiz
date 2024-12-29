@@ -33,8 +33,8 @@ export default function RootLayout({
       >
         <ReduxProvider>
           {children}
+          <WhatsAppButton />
         </ReduxProvider>
-        <WhatsAppButton />
       </body>
     </html>
   );

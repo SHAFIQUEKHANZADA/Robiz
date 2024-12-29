@@ -1,7 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Nav from "../components/Nav"
-import ReduxProvider from "../components/ReduxProvider";
 import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function RoutesLayout({
@@ -11,13 +10,13 @@ export default function RoutesLayout({
 }) {
   return (
     <section>
-      <ReduxProvider>
-        <Header />
-        <Nav />
-        {children}
-        <Footer />
-        <WhatsAppButton />
-      </ReduxProvider>
+
+      <Header />
+      <Nav />
+      {children}
+      <Footer />
+      <WhatsAppButton />
+
     </section>
   );
 }
