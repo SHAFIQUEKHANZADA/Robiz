@@ -10,7 +10,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ["400"] });
 const Volume = () => {
     useEffect(() => {
         AOS.init({
-            once: true, // Trigger animation only once
+            once: true,
         });
     }, []);
 
@@ -18,16 +18,16 @@ const Volume = () => {
         <div className={`${montserrat.className} relative h-screen overflow-hidden`}>
             {/* Background Image */}
             <Image
-    data-aos="zoom-out"
-    data-aos-duration="1000"
-    data-aos-offset="200"
-    data-aos-easing="ease-in-out"
-    src={"/images/v.webp"}
-    alt="volume"
-    layout="fill"
-    objectFit="cover"  
-    className="absolute inset-0 bg-black bg-opacity-30 overflow-hidden object-top"
-/>
+                data-aos="zoom-out"
+                data-aos-duration="1000"
+                data-aos-offset="200"
+                data-aos-easing="ease-in-out"
+                src={"/images/v.webp"}
+                alt="volume"
+                layout="fill"
+                objectFit="cover"
+                className="absolute inset-0 bg-black bg-opacity-30 overflow-hidden object-top"
+            />
 
 
             {/* Centered Text */}

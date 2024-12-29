@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import LimitedOfferPopup from "./components/LimitedOffer";
 import Volume from "./components/Volume";
+import WinterWear from "./components/WinterWear";
  
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <Hero />
       <CoreCollection />
+      <WinterWear/>
       <Volume/>
       <LimitedOfferPopup />
       <EasternWear/>

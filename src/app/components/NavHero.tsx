@@ -49,7 +49,7 @@ const NavHero = () => {
 
                 <div className="flex flex-col justify-center items-center gap-4 ml-5">
                     <h1
-                        className={`${inter.className} text-[40px] md:pl-0 pl-[52px] font-bold group-hover:text-black`}
+                        className={`${inter.className} text-[40px] md:pl-0 pl-[52px] uppercase font-bold group-hover:text-black`}
                     >
                         Robiz
                     </h1>

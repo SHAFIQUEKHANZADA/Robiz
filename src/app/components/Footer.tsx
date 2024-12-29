@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ['latin'] })
 const lato = Lato({ subsets: ['latin'], weight: ["400"] })
 const Footer = () => {
     return (
-        <div className={`${lato.className} md:h-[440px] uppercase bg-[#000000] flex flex-col md:items-center justify-end md:gap-[80px] gap-16 py-2 md:pt-0 pt-10 md:px-0 px-3`}>
-            <div className={`flex flex-col md:flex-row gap-8 lg:gap-[87px] text-[#FAFAFA]`}>
+        <div className={`${lato.className} lg:h-[440px] uppercase bg-[#000000] flex flex-col lg:items-center justify-end md:gap-[80px] gap-16 py-2 lg:pt-0 pt-10 lg:px-0 px-3`}>
+            <div className={`flex flex-col lg:flex-row gap-8 lg:gap-[87px] text-[#FAFAFA]`}>
                 <div className='w-[217px] sm:h-[188px] gap-2 flex flex-col justify-between'>
                     <h1 className={`${inter.className} text-[24px] font-bold`}>Robiz</h1>
                     <p className={`text-[20px]`}>Subscribe</p>
@@ -35,13 +35,13 @@ const Footer = () => {
 
 
                 </div>
-                <div className={`sm:h-[180px] gap-2 w-[185px] md:flex hidden flex-col justify-between`}>
+                <div className={`sm:h-[180px] gap-2 w-[185px] lg:flex hidden flex-col justify-between`}>
                     <h1 className="font-medium text-[20px] mb-1">Support</h1>
                     <p className='text-[16px] font-normal'>111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
                     <p className='text-[16px] font-normal'>robiz@gmail.com</p>
                     <p className='text-[16px] font-normal'>+88015-88888-9999</p>
                 </div>
-                <div className={`w-[123px] sm:h-[236px] gap-2 md:flex hidden flex-col justify-between`}>
+                <div className={`w-[123px] sm:h-[236px] gap-2 lg:flex hidden flex-col justify-between`}>
                     <h1 className='font-medium text-[20px] mb-1'>Account</h1>
                     <p className='font-normal text-[16px]'>My Account</p>
                     <p className='font-normal text-[16px]'>Login / Register</p>
@@ -49,14 +49,14 @@ const Footer = () => {
                     <p className='font-normal text-[16px]'>Wishlist</p>
                     <p className='font-normal text-[16px]'>Shop</p>
                 </div>
-                <div className='sm:h-[196px] gap-2 w-[129px] md:flex hidden flex-col justify-between'>
+                <div className='sm:h-[196px] gap-2 w-[129px] lg:flex hidden flex-col justify-between'>
                     <h1 className='font-medium text-[20px] mb-1'>Quick Link</h1>
                     <p className='font-normal text-[16px]'>Privacy Policy</p>
                     <p className='font-normal text-[16px]'>Terms Of Use</p>
                     <p className='font-normal text-[16px]'>FAQ</p>
                     <p className='font-normal text-[16px]'>Contact</p>
                 </div>
-                <div className='md:hidden block'>
+                <div className='lg:hidden block'>
                     <Accordion type="single" collapsible>
                         <AccordionItem value="item-1">
                             <AccordionTrigger className="text-[18px]">Support</AccordionTrigger>

@@ -18,6 +18,9 @@ import { Archivo } from "next/font/google";
 import ReturnPolicy from "@/app/components/ReturnPolicy";
 import ShippingPolicy from "@/app/components/ShippingPolicy";
 import ShareButton from "@/app/components/Share";
+import SizeChart from "@/app/components/SizeChart";
+import { useAppDispatch } from "@/app/hooks";
+import { addToCart } from "@/app/store/CartSlice";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -65,6 +68,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperRef>(null);
 
+  // Ensure useAppDispatch is called unconditionally
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
@@ -77,7 +83,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
           setError(data.error || "Product not found");
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
         setError("Failed to fetch product details.");
       } finally {
         setLoading(false);
@@ -96,14 +102,34 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
     swiperRef.current?.swiper?.slideTo(index);
   };
 
+  // Early return for loading or error states
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
-
   if (!productDetails) return <div>Product not found</div>;
 
   const { title, price, salePrice, sideImages, productdetails, sizes } = productDetails;
 
-  const discountPercentage = salePrice ? Math.round(((price - salePrice) / price) * 100) : 0;
+  const discountPercentage = salePrice
+    ? Math.round(((price - salePrice) / price) * 100)
+    : 0;
+
+  const handleAddToCart = () => {
+    if (productDetails) {
+      const imageUrl = productDetails.imageUrl
+        ? urlFor(productDetails.imageUrl).url()
+        : "/default-image.png";
+
+      const cartItem = {
+        id: productDetails.slug,
+        name: productDetails.title,
+        price: productDetails.salePrice || productDetails.price,
+        quantity: 1,
+        image: [imageUrl],
+      };
+
+      dispatch(addToCart(cartItem));
+    }
+  };
 
   return (
     <div className={`${archivo.className} product-page md:p-10 p-4`}>
@@ -111,7 +137,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
 
         <div className="md:w-[52%] flex lg:gap-4 gap-2">
           {/* Side Images */}
-          <div className="md:flex hidden flex-col gap-3">
+          <div className="lg:flex hidden flex-col gap-3">
             {sideImages?.map((image, index) => {
               const sideImageUrl = image.asset._ref
                 ? urlFor(image.asset._ref).url()
@@ -167,8 +193,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
           </div>
         </div>
 
+
         {/* Product Details */}
-        <div className="flex-1 sm:space-y-6">
+        <div className="flex-1 sm:space-y-6 lg:ml-[35px]">
           <h1 className="sm:text-[36px] text-[20px] font-medium mb-2">{title}</h1>
           <div className="flex items-center gap-4">
             {/* Price Display */}
@@ -182,21 +209,29 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
           </div>
 
           {/* Size selection UI */}
-          <div className="sizes mt-6">
-            <h2 className="font-semibold mb-2">Available Size:</h2>
-            <div className="flex flex-wrap gap-1">
-              {sizes?.map((size, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleSizeSelect(size)}
-                  className={`size-box p-4 px-10 text-[16px] border cursor-pointer 
+          <div className="space-y-2">
+            <div className="sizes mt-6">
+              <h2 className="font-semibold mb-2">Available Size:</h2>
+              <div className="flex  sm:gap-1">
+                {sizes?.map((size, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleSizeSelect(size)}
+                    className={`h-[60px] w-[100px] flex items-center justify-center text-[16px] border cursor-pointer 
           ${selectedSize === size ? "border-black" : "border-gray-300 bg-transparent"}
-          sm:text-[16px] sm:px-6 sm:p-3 md:text-[18px] md:px-8 md:p-4`} // Adjust size and padding based on screen size
-                >
-                  {size}
-                </div>
-              ))}
+          sm:text-[16px]   md:text-[18px]`}
+                  >
+                    {size}
+                  </div>
+                ))}
+              </div>
             </div>
+            <SizeChart />
+
+          </div>
+
+          <div className="mt-10">
+            <button onClick={handleAddToCart} className="uppercase w-full py-[14px] buttonThree text-white bg-[#111111] sm:text-[13px] text-[12px]">add to bag</button>
           </div>
 
           <div className="mt-10">

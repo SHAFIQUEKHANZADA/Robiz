@@ -1,44 +1,52 @@
-// cartSlice.ts
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 interface CartItem {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    image: string;
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string[];
 }
 
 interface CartState {
-    items: CartItem[];
+  items: CartItem[];
 }
 
 const initialState: CartState = {
-    items: [],
+  items: [],
 };
 
 const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-        addToCart: (state, action: PayloadAction<CartItem>) => {
-            state.items.push(action.payload);
-        },
-        removeFromCart: (state, action: PayloadAction<string>) => {
-            state.items = state.items.filter(item => item.id !== action.payload);
-        },
-        clearCart: (state) => {
-            state.items = [];
-        },
-        updateCartQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
-            const item = state.items.find(item => item.id === action.payload.id);
-            if (item) {
-                item.quantity = action.payload.quantity;
-            }
-        },
+  name: 'cart',
+  initialState,
+  reducers: {
+    // Adding a product with a unique ID
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      const item = state.items.find((item) => item.id === action.payload.id);
+      if (item) {
+        item.quantity += action.payload.quantity;
+      } else {
+        // Ensure each new item gets a unique ID if not provided
+        state.items.push({
+          ...action.payload,
+          id: uuidv4(), // Generate a new random ID if the product doesn't already have one
+        });
+      }
     },
+    // Removing a product by its ID
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter(item => item.id !== action.payload);
+    },
+    // Updating product quantity
+    updateCartQuantity: (state, action: PayloadAction<{ id: string, quantity: number }>) => {
+      const item = state.items.find(item => item.id === action.payload.id);
+      if (item) {
+        item.quantity = action.payload.quantity;
+      }
+    },
+  },
 });
 
-export const { addToCart, removeFromCart, clearCart, updateCartQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateCartQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
