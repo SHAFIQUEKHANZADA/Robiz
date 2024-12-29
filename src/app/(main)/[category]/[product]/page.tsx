@@ -67,8 +67,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperRef>(null);
-
-  // Ensure useAppDispatch is called unconditionally
+ 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
