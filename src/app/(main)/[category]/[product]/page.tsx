@@ -20,7 +20,7 @@ import ShippingPolicy from "@/app/components/ShippingPolicy";
 import ShareButton from "@/app/components/Share";
 import SizeChart from "@/app/components/SizeChart";
 import { useAppDispatch } from "@/app/hooks";
-import { addToCart } from "@/app/store/CartSlice"; 
+import { addToCart } from "@/app/features/cart/cartSlice"; 
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 

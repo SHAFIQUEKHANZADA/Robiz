@@ -7,7 +7,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import React from "react";
-import { removeFromCart, updateCartQuantity } from "../store/CartSlice";
+import { removeFromCart, updateCartQuantity } from "../features/cart/cartSlice";
 import Image from "next/image";
 import { Archivo } from "next/font/google";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
