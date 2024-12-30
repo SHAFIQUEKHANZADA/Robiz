@@ -17,9 +17,8 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./src",  // Make sure baseUrl is set to src
     "paths": {
-      "@/*": ["*"]  // This is typically enough
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
