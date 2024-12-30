@@ -147,7 +147,7 @@ useEffect(() => {
 
       {/* Swiper Product Grid */}
       {!loading && products.length > 0 && (
-        <div data-aos="fade-up"  data-aos-duration="600" className="sm:pl-5">
+        <div data-aos="fade-up"  data-aos-duration="600" className="sm:pl-5 pl-2">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}

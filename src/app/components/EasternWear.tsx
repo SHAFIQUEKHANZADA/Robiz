@@ -64,9 +64,9 @@ const EasternWear = () => {
     };
 
     return (
-        <div className={`${archivo.className} sm:py-5`}>
+        <div className={`${archivo.className} py-5 sm:pl-0 pl-2`}>
             <div data-aos="fade-up" data-aos-duration="600" className="md:px-10 px-4  text-left flex flex-col justify-center my-5">
-                <h2 className="sm:text-[30px] text-[20px] font-medium mb-2 text-[#111111]">
+                <h2 className="sm:text-[30px] text-[22px] font-medium mb-2 text-[#111111]">
                     EASTERN WEAR
                 </h2>
 

@@ -34,7 +34,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
 
   return (
     <Link href={`/${category}/${slug}`} passHref>
-      <div className="border lg:h-[530px] flex flex-col sm:gap-4 lg:w-[330px] sm:h-[400px] sm:w-[260px] w-[42vw] h-[74vw] hover:border-black mb-4 mx-[5px]" onClick={onClick}>
+      <div className="border lg:h-[530px] flex flex-col sm:gap-4 lg:w-[330px] sm:h-[400px] sm:w-[260px] w-[42vw] h-[74vw] hover:border-black mb-4 sm:mx-[5px]" onClick={onClick}>
         <Image
           src={imageSrc}
           alt={title}

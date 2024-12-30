@@ -21,7 +21,7 @@ const WinterWear = () => {
 
 
                         {/* Centered Text */}
-                        <div className="h-full flex items-end pb-28 justify-center relative z-10">
+                        <div className="h-full flex items-end sm:pb-28 pb-16 justify-center relative z-10">
                             <div className="flex flex-col gap-2 text-center text-[#F7F7F7] sm:mt-10">
                                 <h1 className="sm:text-[40px] text-[18px] font-extrabold text-white tracking-wider leading-tight">MEN&apos;S</h1>
                                 <div className="flex justify-center mt-2">
@@ -45,7 +45,7 @@ const WinterWear = () => {
 
 
                         {/* Centered Text */}
-                        <div className="h-full flex items-end pb-28 justify-center relative z-10">
+                        <div className="h-full flex items-end sm:pb-28 pb-16 justify-center relative z-10">
                             <div className="flex flex-col gap-2 text-center text-[#F7F7F7] sm:mt-10">
                                 <h1 className="sm:text-[40px] text-[18px] font-extrabold text-white tracking-wider leading-tight">WOMEN&apos;S</h1>
                                 <div className="flex justify-center mt-2">

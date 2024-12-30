@@ -92,7 +92,7 @@ export const men = defineType({
         list: [
           { title: 'Shirt', value: 'shirt' },
           { title: 'T-Shirt', value: 'tshirt' },
-          { title: 'Pants', value: 'pants' },
+          { title: 'Jacket', value: 'jacket' },
           { title: 'Shalwar kameez', value: 'shalwarkameez' },
         ],
       },

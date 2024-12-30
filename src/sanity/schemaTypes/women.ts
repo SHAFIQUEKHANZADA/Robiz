@@ -92,7 +92,7 @@ export const women = defineType({
                 list: [
                     { title: 'Dress', value: 'dress' },
                     { title: 'Tops', value: 'tshirt' },
-                    { title: 'Pants', value: 'pants' },
+                    { title: 'Jacket', value: 'jacket' },
                 ],
             },
             validation: (Rule) => Rule.required(),

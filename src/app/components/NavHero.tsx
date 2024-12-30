@@ -34,7 +34,7 @@ const dropdownData = [
         items: [
             { href: "/tutorials", text: "PRESS" },
             { href: "/case-studies", text: "LOOKBOOK" },
-            { href: "/whitepapers", text: "ABOUT US" },
+            { href: "/about-us", text: "ABOUT US" },
             { href: "/community", text: "CONTACT US" },
         ],
     },

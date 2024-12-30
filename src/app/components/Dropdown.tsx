@@ -63,7 +63,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ label, items }) => {
         <div className="absolute left-0 top-[35px] sm:mt-2 w-64 sm:bg-[#F7F7F7] border border-black dark:border-neutral-700 p-4 z-50">
           {items.map((item, index) => (
             <Link key={index} href={item.href}>
-              <div className="text-[18px] py-2 sm:hover:bg-gray-100 sm:dark:hover:bg-neutral-700 text-black rounded cursor-pointer">
+              <div className="text-[16px] py-2 hover:underline text-black rounded cursor-pointer">
                 {item.text}
               </div>
             </Link>
