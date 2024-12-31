@@ -248,3 +248,8 @@ body {
   animation: custom-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+.stickys {
+  background-color: var(--color-background-semi-transparent-80);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}

@@ -52,7 +52,7 @@ const Nav = () => {
                 <div className="flex flex-col justify-center items-center gap-4 ml-5">
                     <Link href={"/"}>
                         <h1
-                            className={`${inter.className} text-[40px] uppercase md:pl-0 pl-[52px] font-bold text-black`}
+                            className={`${inter.className} sm:text-[40px] text-[33px] uppercase md:pl-0 pl-[52px] font-bold text-black`}
                         >
                             Robiz
                         </h1>
