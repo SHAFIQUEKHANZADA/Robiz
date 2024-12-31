@@ -43,7 +43,7 @@ const dropdownData = [
 const NavHero = () => {
     return (
         <div className="md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-transparent group hover:bg-[#F7F7F7] duration-150 text-white">
-            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4 group-hover:text-black">
+            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-5 group-hover:text-black">
                 <MobileMenuBar />
                 <Search />
 

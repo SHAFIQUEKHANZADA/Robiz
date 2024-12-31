@@ -5,157 +5,175 @@ import { AiOutlineClose } from "react-icons/ai";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { SlMenu } from "react-icons/sl";
-import { IoIosArrowForward, IoIosArrowRoundBack } from "react-icons/io";
+import Image from "next/image";
 
 const MobileMenuBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
 
-
     useEffect(() => {
         AOS.init({
             once: true,
+            offset: 400,
         });
     }, []);
 
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-        setActiveSubMenu(null);
-    };
-
-    const [menuAnimation, setMenuAnimation] = useState("");
-
     const toggleMenu = () => {
-        if (isMenuOpen) {
-            setMenuAnimation("flip-out");
-            setTimeout(() => {
-                setIsMenuOpen(false);
-                setMenuAnimation("");
-            }, 500);
-        } else {
-            setIsMenuOpen(true);
-            setMenuAnimation("flip-in");
-        }
+        setIsMenuOpen(!isMenuOpen);
+        if (!isMenuOpen) setActiveSubMenu(null);
     };
-
-
-
+ 
     return (
         <div className="md:hidden">
             {/* Menu Button / Close Button */}
-            <div onClick={toggleMenu} className={`cursor-pointer ${menuAnimation}`}>
+            <div onClick={toggleMenu} className="cursor-pointer">
                 {isMenuOpen ? (
-                    <AiOutlineClose onClick={closeMenu} className="h-[22px] w-[22px]" />
+                    <AiOutlineClose className="h-[22px] w-[22px]" />
                 ) : (
                     <SlMenu className="h-[22px] w-[22px]" />
                 )}
             </div>
 
             {/* Main Menu Drawer */}
-            {isMenuOpen && !activeSubMenu && (
-                <div className="fixed inset-0 z-50 text-black">
+            {isMenuOpen && (
+                <div className="fixed inset-0 z-50 h-[90%] w-full mt-20 text-black">
                     <div
-
-                        className="relative w-full h-[90%] mt-20 bg-[#F7F7F7] p-4 flex flex-col items-start overflow-y-auto"
-                        style={{
-                            transform: "translateX(0%)",
-                            transition: "transform 0.3s ease-in-out",
-                        }}
+                        className={`relative bg-[#F7F7F7] p-4 h-full flex flex-col items-start overflow-hidden transition-transform duration-500 ${activeSubMenu ? "-translate-x-full" : "translate-x-0"
+                            }`}
                     >
-                        <div data-aos="fade-up" data-aos-duration="600" onClick={() => setActiveSubMenu("SHOP")} className="flex items-center justify-between w-full">
-                            <Link
-                                href="#"
-                                className="text-lg font-medium py-2"
-
-                            >
+                        {/* Main Menu */}
+                        <div
+                            data-aos="fade-up"
+                            data-aos-duration="600"
+                            onClick={() => setActiveSubMenu("SHOP")}
+                            className="flex items-center justify-between w-full"
+                        >
+                            <Link href="#" className="text-[16px] font-medium py-[10px]">
                                 SHOP
                             </Link>
-                            <IoIosArrowForward className="text-[32px] font-extralight" />
+                            <Image
+                                src="/svg/arrow-right.svg"
+                                alt="arrow"
+                                width={100}
+                                height={100}
+                                className="w-[18px] h-[18px] font-extralight"
+                            />
                         </div>
+                        <div data-aos="fade-up"
+                            data-aos-duration="600" className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
 
-                        <div data-aos="fade-up" data-aos-duration="600" className="w-full h-[0.1px] bg-black my-2"></div>
-                        <div data-aos="fade-up" data-aos-duration="600" onClick={() => setActiveSubMenu("CORE_COLLECTION")} className="flex items-center justify-between w-full">
-                            <Link
-                                href="#"
-                                className="text-lg font-medium py-2"
-
-                            >
+                        <div
+                            data-aos="fade-up"
+                            data-aos-duration="600"
+                            onClick={() => setActiveSubMenu("CORE_COLLECTION")}
+                            className="flex items-center justify-between w-full"
+                        >
+                            <Link href="#" className="text-[16px] font-medium py-[10px]">
                                 CORE COLLECTION
                             </Link>
-                            <IoIosArrowForward className="text-[32px] font-extralight" />
+                            <Image
+                                src="/svg/arrow-right.svg"
+                                alt="arrow"
+                                width={100}
+                                height={100}
+                                className="w-[18px] h-[18px] font-extralight"
+                            />
                         </div>
-                        <div data-aos="fade-up" data-aos-duration="600" className="w-full h-[0.1px] bg-black my-2"></div>
-                        <div data-aos="fade-up" data-aos-duration="600" onClick={() => setActiveSubMenu("ABOUT_ROBIZ")} className="flex items-center justify-between w-full">
-                            <Link
-                                href="#"
-                                className="text-lg font-medium py-2"
+                        <div data-aos="fade-up"
+                            data-aos-duration="600" className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
 
-                            >
+                        <div
+                            data-aos="fade-up"
+                            data-aos-duration="600"
+                            onClick={() => setActiveSubMenu("ABOUT_ROBIZ")}
+                            className="flex items-center justify-between w-full"
+                        >
+                            <Link href="#" className="text-[16px] font-medium py-[10px]">
                                 ABOUT ROBIZ
                             </Link>
-                            <IoIosArrowForward className="text-[32px] font-extralight" />
+                            <Image
+                                src="/svg/arrow-right.svg"
+                                alt="arrow"
+                                width={100}
+                                height={100}
+                                className="w-[18px] h-[18px] font-extralight"
+                            />
                         </div>
                     </div>
-                </div>
-            )}
 
-            {/* Submenus */}
-            {activeSubMenu && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 text-black">
+                    {/* Submenu Drawer */}
                     <div
-                        className="relative h-[90%] mt-20 w-full bg-[#F7F7F7] p-4 flex flex-col items-start overflow-y-auto"
-                        style={{
-                            transform: "translateX(0%)",
-                            transition: "transform 0.3s ease-in-out",
-                        }}
+                        className={`absolute inset-0 bg-[#F7F7F7] p-4 h-full flex flex-col items-start overflow-hidden transition-transform duration-500 ${activeSubMenu ? "translate-x-0" : "translate-x-full"
+                            }`}
                     >
-                        <div
-                            className="flex items-center cursor-pointer"
-                            onClick={() => setActiveSubMenu(null)}
-                        >
-                            <IoIosArrowRoundBack className="text-[40px]" />
+                        <div className="flex items-center cursor-pointer mb-4" onClick={() => setActiveSubMenu(null)}>
+                            <Image
+                                src="/svg/arrow-back.svg"
+                                alt="arrow"
+                                width={100}
+                                height={100}
+                                className="w-[22px] h-[22px] font-extralight"
+                            />
                         </div>
                         {activeSubMenu === "SHOP" && (
                             <>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    MEN
+                                <h1 className="py-4 text-[19px] font-semibold uppercase">SHOP</h1>
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/men" className="text-[16px] font-medium  py-2">
+                                    MEN&apos;s
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    WOMEN
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/women" className="text-[16px] font-medium  py-2">
+                                    WOMEN&apos;s
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/shirts" className="text-[16px] font-medium  py-2">
                                     SHIRT
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/pants" className="text-[16px] font-medium  py-2">
                                     PANTS
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/products" className="text-[16px] font-medium  py-2">
                                     ALL
                                 </Link>
                             </>
                         )}
                         {activeSubMenu === "CORE_COLLECTION" && (
                             <>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    NEW ARRIVALS
+                                <h1 className="py-4 text-[19px] font-semibold uppercase">CORE COLLECTION</h1>
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/products" className="text-[16px] font-medium  py-2">
+                                    ALL PRODUCTS
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    BESTSELLERS
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/shirts" className="text-[16px] font-medium  py-2">
+                                    SHIRTS
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    LIMITED EDITIONS
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/dress" className="text-[16px] font-medium  py-2">
+                                    DRESS
                                 </Link>
                             </>
                         )}
                         {activeSubMenu === "ABOUT_ROBIZ" && (
                             <>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    OUR STORY
+                                <h1 className="py-4 text-[19px] font-semibold uppercase">ABOUT ROBIZ</h1>
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/press" className="text-[16px] font-medium  py-2">
+                                    PRESS
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
-                                    SUSTAINABILITY
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/lookbook" className="text-[16px] font-medium  py-2">
+                                    LOOKBOOK
                                 </Link>
-                                <Link href="#" className="text-lg font-medium py-2">
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/about-us" className="text-[16px] font-medium  py-2">
+                                    ABOUT US
+                                </Link>
+                                <div className="w-full h-[0.1px] bg-[#7B7B7B] my-2"></div>
+                                <Link href="/contact-us" className="text-[16px] font-medium  py-2">
                                     CONTACT US
                                 </Link>
                             </>

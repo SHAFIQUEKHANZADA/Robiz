@@ -45,7 +45,7 @@ const dropdownData = [
 const Nav = () => {
     return (
         <div className={`${montserrat.className} md:h-[130px] h-[60px] md:pt-4 justify-end flex flex-col md:gap-3 bg-[#F7F7F7] duration-150`}>
-            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-4  text-black">
+            <div className="flex md:items-end items-center md:h-[38px] h-full justify-between md:px-10 px-5  text-black">
                 <MobileMenuBar />
                 <Search />
 

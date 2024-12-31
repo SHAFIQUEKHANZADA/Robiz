@@ -6,7 +6,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ["400"] })
 
 const Hero = () => {
     return (
-        <div className={`${montserrat.className} md:bg-[url('/images/banner.webp')] bg-[url('/images/minibanner.webp')] bg-cover bg-center`}>
+        <div className={`${montserrat.className} md:bg-[url('/images/banner.webp')] bg-[url('/images/banner2.jpg')] bg-cover bg-center`}>
             <NavHero />
             <div className={`md:h-screen h-[167vw] flex items-center justify-center`}>
 
