@@ -17,7 +17,7 @@ const Footer = () => {
                 <div className='w-[217px] sm:h-[188px] gap-2 flex flex-col justify-between'>
                     <h1 className={`${inter.className} text-[24px] font-bold`}>Robiz</h1>
                     <p className={`text-[20px]`}>Subscribe</p>
-                    <p className={`font-normal text-[16px]`}>Get 10% off your first order</p>
+                    <p className={`font-normal text-[16px]`}>Get 10% off on your first order</p>
                     <div className="relative">
                         <input
                             type="email"
@@ -38,8 +38,8 @@ const Footer = () => {
                 <div className={`sm:h-[180px] gap-2 w-[185px] lg:flex hidden flex-col justify-between`}>
                     <h1 className="font-medium text-[20px] mb-1">Support</h1>
                     <p className='text-[16px] font-normal'>111 Bijoy sarani, Dhaka,  DH 1515, Bangladesh.</p>
-                    <p className='text-[16px] font-normal'>robiz@gmail.com</p>
-                    <p className='text-[16px] font-normal'>+88015-88888-9999</p>
+                    <p className='text-[16px] font-normal lowercase'>robiz@gmail.com</p>
+                    <p className='text-[16px] font-normal'>+923464365890</p>
                 </div>
                 <div className={`w-[123px] sm:h-[236px] gap-2 lg:flex hidden flex-col justify-between`}>
                     <h1 className='font-medium text-[20px] mb-1'>Account</h1>
@@ -99,10 +99,11 @@ const Footer = () => {
                             <Image src={"/svg/paypal.svg"} alt='paypal-pay' width={31} height={30} className='bg-white px-2 py-[3px] rounded-[2px]' />
                             <Image src={"/svg/payoneer.svg"} alt='payoneer' width={30} height={30} />
                             <Image src={"/svg/amazon.svg"} alt='amazon' width={30} height={30} />
+                            <Image src={"/svg/bancon.svg"} alt='amazon' width={30} height={30} />
                         </div>
                     </div>
 
-                    <div className='flex items-center gap-3'>
+                    <div className='flex items-center gap-[10px]'>
                         <h1 className='text-[20px] font-medium'>Share:</h1>
                         <div className='flex sm:gap-[24px] gap-5 items-center'>
                             <Image src={"/images/facebook.png"} alt='facebook' width={100} height={100} className='h-6 w-6' />

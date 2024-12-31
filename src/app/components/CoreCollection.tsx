@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import CustomCard from "./CustomCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType } from "swiper";  
+import { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,7 +10,8 @@ import { useRouter } from "next/navigation";
 import { Archivo } from "next/font/google";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import 'aos/dist/aos.css';
+import Image from "next/image";
 
 
 
@@ -37,10 +38,19 @@ const CoreCollection = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSeeAll, setShowSeeAll] = useState<boolean>(false);
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null); 
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const router = useRouter();
 
+  const [screenSize, setScreenSize] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    handleResize();  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -58,13 +68,13 @@ const CoreCollection = () => {
     fetchProducts();
   }, [category]);
 
-  
-useEffect(() => {
-  AOS.init({ 
-    once: true,  
-    offset: 20,
-  });
-}, []);
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      offset: 20,
+    });
+  }, []);
 
   return (
     <div className={`${archivo.className} sm:py-5`}>
@@ -118,9 +128,8 @@ useEffect(() => {
             {/* Previous Button */}
             <button
               onClick={() => swiperInstance?.slidePrev()}
-              className={`text-[50px] ${
-                activeIndex === 0 ? "text-gray-400" : "text-[#111111]"
-              }`}
+              className={`text-[50px] ${activeIndex === 0 ? "text-gray-400" : "text-[#111111]"
+                }`}
               disabled={activeIndex === 0}
             >
               <IoIosArrowRoundBack />
@@ -129,11 +138,10 @@ useEffect(() => {
             {/* Next Button */}
             <button
               onClick={() => swiperInstance?.slideNext()}
-              className={`text-[50px] ${
-                activeIndex === products.length - 1
-                  ? "text-gray-400"
-                  : "text-[#111111]"
-              }`}
+              className={`text-[50px] ${activeIndex === products.length - 1
+                ? "text-gray-400"
+                : "text-[#111111]"
+                }`}
               disabled={activeIndex === products.length - 1}
             >
               <IoIosArrowRoundForward />
@@ -142,12 +150,42 @@ useEffect(() => {
         </div>
       </div>
 
+
+
+
       {/* Loading State */}
-      {loading && <p>Loading...</p>}
+      {loading && (
+       <div className="flex justify-start items-center gap-4 overflow-x-auto sm:pl-5 pl-2">
+       {Array.from({
+         length:
+           screenSize >= 1024 ? 4 : screenSize >= 768 ? 3 : 2,  
+       }).map((_, index) => (
+            <div
+              key={index}
+              className="border border-gray-300 justify-center items-center lg:h-[530px] flex flex-col gap-4 lg:w-[330px] sm:h-[400px] sm:w-[260px] w-[42vw] h-[74vw] bg-gray-100 skeleton-loader"
+            >
+              {/* Image Placeholder */}
+              <div className="h-3/5 w-full flex justify-center items-center skeleton-loader">
+              <Image src={"/images/logo.png"} alt="logo" width={150} height={150} className="md:w-[150px] w-[100px] pt-10"/>
+              </div>
+
+              <div className="text-center space-y-3">
+                {/* Title Placeholder */}
+                <div className="bg-gray-300 rounded-md h-4 w-3/4 skeleton-loader"></div>
+
+                {/* Price Placeholder */}
+                <div className="bg-gray-300 rounded-md h-4 w-1/2 skeleton-loader"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+
 
       {/* Swiper Product Grid */}
       {!loading && products.length > 0 && (
-        <div data-aos="fade-up"  data-aos-duration="600" className="sm:pl-5 pl-2">
+        <div data-aos="fade-up" data-aos-duration="600" className="sm:pl-5 pl-2">
           <Swiper
             modules={[Navigation]}
             spaceBetween={10}
@@ -166,7 +204,7 @@ useEffect(() => {
             {products.map((product) => (
               <SwiperSlide key={product.slug.current}>
                 <CustomCard
-                 imageUrl={product.sideImages[0]}
+                  imageUrl={product.sideImages[0]}
                   title={product.title}
                   price={product.price}
                   salePrice={product.salePrice}

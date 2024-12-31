@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
 import WhatsAppChatBox from './WhatsAppChatBox';
 import styles from '../../../styles/WhatsAppButton.module.css';
+import { IoChatbubbleEllipsesSharp } from 'react-icons/io5';
 
 const WhatsAppButton = () => {
   const [isChatBoxVisible, setChatBoxVisible] = useState(false);
@@ -17,7 +17,7 @@ const WhatsAppButton = () => {
     <div className={styles.whatsAppContainer}>
       {isLogoVisible && (
         <div className={`${styles.whatsAppButton} ${styles.logoAnimation}`} onClick={toggleChatBox}>
-          <FaWhatsapp />
+          <IoChatbubbleEllipsesSharp className='transform scale-x-[-1]' />
         </div>
       )}
       {isChatBoxVisible && <WhatsAppChatBox toggleChatBox={toggleChatBox} />}

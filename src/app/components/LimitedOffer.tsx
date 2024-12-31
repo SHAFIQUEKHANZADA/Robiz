@@ -33,10 +33,12 @@ const LimitedOfferPopup = () => {
   return (
     <div className={`${montserrat.className}`}>
       <div
-        className={`fixed top-0 left-0 w-full  h-full bg-black bg-opacity-60 flex justify-center items-center ${
-          isOpen ? "block" : "hidden"
-        }`}
-      >
+  className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center ${
+    isOpen ? "block" : "hidden"
+  }`}
+  style={{ zIndex: 9999 }}
+>
+
         <div className="py-5 border border-gray-200 bg-[#F7F7F7] shadow-lg sm:w-[400px] w-[85vw] h-98 flex flex-col justify-center items-center relative px-6">
           <button
             onClick={() => setIsOpen(!isOpen)}

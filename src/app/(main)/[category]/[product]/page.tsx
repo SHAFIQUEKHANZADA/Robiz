@@ -20,7 +20,7 @@ import ShippingPolicy from "@/app/components/ShippingPolicy";
 import ShareButton from "@/app/components/Share";
 import SizeChart from "@/app/components/SizeChart";
 import { useAppDispatch } from "@/app/hooks";
-import { addToCart } from "@/app/features/cart/cartSlice"; 
+import { addToCart } from "@/app/features/cart/cartSlice";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -56,6 +56,7 @@ interface Product {
   slug: string;
   productdetails: RichTextBlock[];
   sizes: string[];
+  stockStatus: string;
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
@@ -67,7 +68,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const swiperRef = useRef<SwiperRef>(null);
- 
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -102,11 +103,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
   };
 
   // Early return for loading or error states
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="h-screen w-full flex justify-center items-center skeleton-loader">
+    <Image src={"/images/logo.png"} alt="logo" width={150} height={150} className="md:w-[250px] w-[100px] pt-10" />
+  </div>;
   if (error) return <div>{error}</div>;
   if (!productDetails) return <div>Product not found</div>;
 
-  const { title, price, salePrice, sideImages, productdetails, sizes } = productDetails;
+  const { title, price, salePrice, sideImages, productdetails, sizes, stockStatus } = productDetails;
 
   const discountPercentage = salePrice
     ? Math.round(((price - salePrice) / price) * 100)
@@ -230,7 +233,49 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
           </div>
 
           <div className="mt-10">
-            <button onClick={handleAddToCart} className="uppercase w-full py-[14px] buttonThree text-white bg-[#111111] sm:text-[13px] text-[12px]">add to bag</button>
+            {stockStatus === "outOfStock" ? (
+              <div className="space-y-5">
+                <div className="uppercase w-full py-[14px] text-white bg-[#9B9B9B] sm:text-[13px] text-[12px] flex justify-center items-center">
+                  Sold Out
+                </div>
+                <div className="mt-2 bg-[#EDEDED] py-[14px] px-5 flex items-center">
+                  <label htmlFor="outOfStock" className="inline-flex items-center text-[12px] font-medium">
+                    <input
+                      type="radio"
+                      id="outOfStock"
+                      name="stockStatus"
+                      value="outOfStock"
+                      checked
+                      disabled
+                      className="mr-2 rounded-full w-[17px] h-[17px] appearance-none border-[3px] border-[#BABABA] checked:bg-[#000000]"
+                    />
+                    Out of stock
+                  </label>
+                </div>
+              </div>
+
+            ) : (
+              <div className="mt-10 space-y-5">
+                <button onClick={handleAddToCart} className="uppercase w-full py-[14px] buttonThree text-white bg-[#111111] sm:text-[13px] text-[12px]">
+                  add to bag
+                </button>
+
+                <div className="mt-2 bg-[#EDEDED] py-[14px] px-5 flex items-center">
+                  <label htmlFor="outOfStock" className="flex items-center text-[13px] font-medium">
+                    <input
+                      type="radio"
+                      id="outOfStock"
+                      name="stockStatus"
+                      value="outOfStock"
+                      checked
+                      disabled
+                      className="mr-2 rounded-full w-[16px] h-[16px] appearance-none border-[3px] border-[#F28E8E] checked:bg-[#F62727]"
+                    />
+                   Only a few left! Ready to ship
+                  </label>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-10">

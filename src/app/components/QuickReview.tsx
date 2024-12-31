@@ -12,7 +12,7 @@ interface ProductQuickReviewProps {
     imageUrl: string;
     slug: string;
   };
-  onClose: () => void; // Function to close the popup
+  onClose: () => void; 
 }
 
 const ProductQuickReview: React.FC<ProductQuickReviewProps> = ({

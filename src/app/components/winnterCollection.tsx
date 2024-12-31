@@ -11,6 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HoverdCard from "./CardHoverd";
 import { urlFor } from "@/sanity/lib/image"; 
+import Image from "next/image";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -35,6 +36,15 @@ const WinnterCollection = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
     const [activeIndex] = useState<number>(0);
+
+    const [screenSize, setScreenSize] = useState<number>(0);
+
+    useEffect(() => {
+      const handleResize = () => setScreenSize(window.innerWidth);
+      handleResize(); 
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -97,7 +107,35 @@ const WinnterCollection = () => {
                 </div>
             </div>
 
-            {loading && <p>Loading...</p>}
+      
+      {/* Loading State */}
+      {loading && (
+       <div className="flex justify-start items-center gap-4 overflow-x-auto sm:pl-5 pl-2">
+       {Array.from({
+         length:
+           screenSize >= 1024 ? 4 : screenSize >= 768 ? 3 : 2,  
+       }).map((_, index) => (
+            <div
+              key={index}
+              className="border border-gray-300 justify-center items-center lg:h-[530px] flex flex-col gap-4 lg:w-[330px] sm:h-[400px] sm:w-[260px] w-[42vw] h-[74vw] bg-gray-100 skeleton-loader"
+            >
+              {/* Image Placeholder */}
+              <div className="h-3/5 w-full flex justify-center items-center skeleton-loader">
+              <Image src={"/images/logo.png"} alt="logo" width={150} height={150} className="md:w-[150px] w-[100px] pt-10"/>
+              </div>
+
+              <div className="text-center space-y-3">
+                {/* Title Placeholder */}
+                <div className="bg-gray-300 rounded-md h-4 w-3/4 skeleton-loader"></div>
+
+                {/* Price Placeholder */}
+                <div className="bg-gray-300 rounded-md h-4 w-1/2 skeleton-loader"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
 
             {!loading && products.length > 0 && (
                 <div data-aos="fade-up" data-aos-duration="600" className="sm:pl-5">

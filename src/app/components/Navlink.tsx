@@ -18,10 +18,10 @@ const MobileMenuBar = () => {
         });
     }, []);
 
-    // const closeMenu = () => {
-    //     setIsMenuOpen(false);
-    //     setActiveSubMenu(null);
-    // };
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+        setActiveSubMenu(null);
+    };
 
     const [menuAnimation, setMenuAnimation] = useState("");
 
@@ -45,7 +45,7 @@ const MobileMenuBar = () => {
             {/* Menu Button / Close Button */}
             <div onClick={toggleMenu} className={`cursor-pointer ${menuAnimation}`}>
                 {isMenuOpen ? (
-                    <AiOutlineClose className="h-[22px] w-[22px]" />
+                    <AiOutlineClose onClick={closeMenu} className="h-[22px] w-[22px]" />
                 ) : (
                     <SlMenu className="h-[22px] w-[22px]" />
                 )}
