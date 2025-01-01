@@ -6,6 +6,7 @@ import { Archivo } from "next/font/google";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import FilterAndSort from "@/app/components/Filter";
 
 const archivo = Archivo({ subsets: ["latin"], weight: ["400"] });
 
@@ -108,7 +109,7 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
           <p className="text-[#7C7C7C]">{sortedProducts.length} Results</p>
         </div>
 
-      <div className="flex items-center gap-2">
+      <div className="sm:flex hidden items-center gap-2">
           {/* Filter dropdown */}
           <div className="flex justify-center">
           <select
@@ -140,6 +141,8 @@ const CategoryPage = ({ params }: { params: { category: string } }) => {
           </div>
         </div>
       </div>
+
+      <FilterAndSort/>
       </div>
 
       {/* Grid display */}

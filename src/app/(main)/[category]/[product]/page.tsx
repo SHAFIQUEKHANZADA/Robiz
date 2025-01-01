@@ -115,23 +115,27 @@ const ProductPage: React.FC<ProductPageProps> = ({ params }) => {
     ? Math.round(((price - salePrice) / price) * 100)
     : 0;
 
-  const handleAddToCart = () => {
-    if (productDetails) {
-      const imageUrl = productDetails.imageUrl
-        ? urlFor(productDetails.imageUrl).url()
-        : "/default-image.png";
-
-      const cartItem = {
-        id: productDetails.slug,
-        name: productDetails.title,
-        price: productDetails.salePrice || productDetails.price,
-        quantity: 1,
-        image: [imageUrl],
-      };
-
-      dispatch(addToCart(cartItem));
-    }
-  };
+    const handleAddToCart = () => {
+      if (productDetails) {
+        // Use the first side image or fall back to mainImage
+        const imageUrl = productDetails.sideImages?.[0]?.asset?.url || 
+                         productDetails.sideImages[0]?.asset?.url || 
+                         "/default-image.png";
+    
+        console.log("Generated Image URL:", imageUrl); // Log to ensure URL is correct
+    
+        const cartItem = {
+          id: productDetails.slug,  
+          name: productDetails.title,
+          price: productDetails.salePrice || productDetails.price,
+          quantity: 1,
+          image: [imageUrl], // Save the image URL in an array
+        };
+    
+        dispatch(addToCart(cartItem));
+      }
+    };
+    
 
   return (
     <div className={`${archivo.className} product-page md:p-10 p-4`}>

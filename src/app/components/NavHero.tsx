@@ -11,22 +11,22 @@ const dropdownData = [
     {
         label: "SHOP",
         items: [
-            { href: "/technology-and-innovation", text: "Technology and Innovation" },
-            { href: "/sports", text: "Sports" },
-            { href: "/business", text: "Business" },
+            { href: "/men", text: "MEN'S" },
+            { href: "/women", text: "WOMEN'S" },
+            { href: "/shirts", text: "T-SHIRTS & SHIRTS" },
             { href: "/health-and-fitness", text: "Health & Fitness" },
-            { href: "/news-and-currentaffairs", text: "News and Current Affairs" },
-            { href: "/food-and-drink", text: "Food and Drink" },
+            { href: "/jackets", text: "JACKATES" },
+            { href: "/Accessories", text: "ACCESSORIES" },
         ],
     },
     {
         label: "CORE COLLECTION",
         items: [
-            { href: "/web-development", text: "Web Development" },
-            { href: "/mobile-apps", text: "Mobile Apps" },
-            { href: "/digital-marketing", text: "Digital Marketing" },
-            { href: "/seo-services", text: "SEO Services" },
-            { href: "/ui-ux-design", text: "UI/UX Design" },
+            { href: "/products", text: "ALL PRODUCTS" },
+            { href: "/shirts", text: "SHIRTS" },
+            { href: "/dress", text: "DRESS" },
+            { href: "/jacket", text: "JACKET" },
+            { href: "/hoodies", text: "HOODIES" },
         ],
     },
     {

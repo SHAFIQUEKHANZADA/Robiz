@@ -1,9 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSmile } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import Image from "next/image";
 import styles from "./../../../styles/WhatsAppButton.module.css";
+import { Montserrat } from "next/font/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const montserrat = Montserrat({ subsets: ['latin'], weight: ["500"] })
 
 interface WhatsAppChatBoxProps {
   toggleChatBox: () => void;
@@ -21,22 +26,29 @@ const WhatsAppChatBox: React.FC<WhatsAppChatBoxProps> = ({ toggleChatBox }) => {
     }
   };
 
+  useEffect(() => {
+    AOS.init({
+        once: true,
+        offset: 4,
+    });
+}, []);
+
+
   return (
-    <div className={`${styles.chatBox} `}>
-      <div className={styles.header}>
-        <div className={styles.profilePicture}>
-          {/* Add your profile picture here */}
-        </div>
-        <div className={styles.body}>
-          <h1 className="text-3xl font-base mb-2">Hi there 👋</h1>
-          <p className="text-sm">Welcome to Social Chat and Share. Ask us anything 🎉</p>
+    <div data-aos="fade-up"
+    data-aos-duration="600" className={`${montserrat.className} bg-[#FbFbFA] rounded-2xl shadow-xl sm:h-[410px] h-[385px] sm:w-[350px] w-[85vw]`}>
+      <div>
+       
+        <div  className={styles.body}>
+          <h1 className="text-[45px] font-extrabold mb-2 sm:pl-2">Robiz</h1>
+          <p className="text-[18px] font-semibold text-[#161616] sm:pl-2">How can we help?</p>
 
           <div className="divider my-2"></div>
-          <p className="text-xs">We typically reply within a few minutes</p>
+          <p className="text-xs sm:pl-2">We typically reply within a few minutes</p>
         </div>
 
         <button
-          className={`${styles.closeButton} absolute top-3 right-3`}
+          className={`text-black absolute top-3 right-3`}
           onClick={toggleChatBox}
         >
           <svg
@@ -55,19 +67,19 @@ const WhatsAppChatBox: React.FC<WhatsAppChatBoxProps> = ({ toggleChatBox }) => {
           </svg>
         </button>
       </div>
-      <div className="pb-10">
-        <div className="flex gap-2 m-5 mt-6 mb-20">
-          <div>
+      <div className="sm:h-[190px] pb-[5vw]">
+        <div className="flex gap-2 sm:m-5 m-4 mt-6 mb-20 items-center">
+          <div className=" ">
             <Image
               src="/images/shafiq.jpeg"
               alt="Support Team"
-              className="rounded-full"
+              className="rounded-full w-full h-full object-cover"
               width={40}
               height={40}
             />
           </div>
-          <div className="w-[80%] rounded-xl bg-gray-100 p-1 font-base text-xs flex items-center justify-center text-center">
-            <p className="text-xs font-base">Hello! I&apos;m from Robiz Support team.</p>
+          <div className="rounded-xl bg-gray-200 sm:p-3 p-2 flex items-center justify-center">
+            <p className="text-[14px] font-base">Hello! I&apos;m from Robiz Support team.</p>
           </div>
         </div>
       </div>

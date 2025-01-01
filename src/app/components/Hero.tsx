@@ -1,6 +1,7 @@
 "use client";
 import { Montserrat } from 'next/font/google';
 import NavHero from './NavHero';
+import Link from 'next/link';
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ["400"] })
 
@@ -14,8 +15,8 @@ const Hero = () => {
                     <p className='sm:text-[14px] text-[12px] font-bold'>ESSENTIALS FOR ANY OCCASION</p>
                     <h1 className='text-[40px] font-extrabold text-white tracking-wider leading-tight'>CORE COLLECTION</h1>
                     <div className='flex items-center gap-4 justify-center mt-2'>
-                        <button className='button'>SHOP MEN</button>
-                        <button className='button'>SHOP WOMEN</button>
+                       <Link href={"/men"}><button className='button'>SHOP MEN</button></Link>
+                       <Link href={"/women"}><button className='button'>SHOP WOMEN</button></Link>
                     </div>
                 </div>
             </div>
