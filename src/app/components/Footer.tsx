@@ -99,7 +99,7 @@ const Footer = () => {
                             <Image src={"/svg/paypal.svg"} alt='paypal-pay' width={31} height={30} className='bg-white px-2 py-[3px] rounded-[2px]' />
                             <Image src={"/svg/payoneer.svg"} alt='payoneer' width={30} height={30} />
                             <Image src={"/svg/amazon.svg"} alt='amazon' width={30} height={30} />
-                            <Image src={"/svg/bancon.svg"} alt='amazon' width={30} height={30} />
+{/*                             <Image src={"/svg/bancon.svg"} alt='amazon' width={30} height={30} /> */}
                         </div>
                     </div>
 
